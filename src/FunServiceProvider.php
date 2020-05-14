@@ -42,6 +42,13 @@ class FunServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        if (! $this->app->routesAreCached()) {
+            $this->registerRoutes();
+        }
+    }
+
+    protected function registerRoutes()
+    {
         collect(static::PATHS)
             ->reject(fn ($path) => Route::exists($path))
             ->each(fn ($path) => Route::redirect($path, FunController::class));
