@@ -2,14 +2,16 @@
 
 namespace M1guelpf\Fun;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Route;
 use M1guelpf\Fun\Http\FunController;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route as Router;
 
 class FunServiceProvider extends ServiceProvider
 {
     const PATHS = [
         '.env',
+        'wp-login',
         'wp-login.php',
         'wp-admin',
         'admin.php',
@@ -49,8 +51,23 @@ class FunServiceProvider extends ServiceProvider
 
     protected function registerRoutes()
     {
+        $routes = Router::getRoutes()->get('GET');
+
         collect(static::PATHS)
-            ->reject(fn ($path) => Route::exists($path))
-            ->each(fn ($path) => Route::redirect($path, FunController::class));
+            ->reject(fn ($path) => $this->routeExists($routes, $path))
+            ->each(fn ($path)   => Router::get($path, FunController::class));
+    }
+
+    protected function routeExists(array $routes, string $path)
+    {
+        [$fallbacks, $routes] = collect($routes)->partition(function ($route) {
+            return $route->isFallback;
+        });
+
+        return $routes->merge($fallbacks)->first(function (Route $route) use ($path) {
+            $compiled = $route->compiled ?? $route->toSymfonyRoute()->compile();
+
+            return preg_match($compiled->getRegex(), rawurldecode($path));
+        });
     }
 }
