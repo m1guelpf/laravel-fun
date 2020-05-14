@@ -1,0 +1,42 @@
+{
+    "name": "m1guelpf/laravel-fun",
+    "description": ":package_description",
+    "keywords": [
+        "m1guelpf",
+		"laravel-fun",
+		"laravel"
+    ],
+    "homepage": "https://github.com/m1guelpf/laravel-fun",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miguel Piedrafita",
+            "email": "soy@miguelpiedrafita.com",
+            "homepage": "https://miguelpiedrafita.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/http": "^7.11",
+        "illuminate/routing": "^7.11",
+        "illuminate/support": "^7.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "M1guelpf\\Fun\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "M1guelpf\\Fun\\FunServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
