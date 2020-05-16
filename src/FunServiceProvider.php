@@ -40,6 +40,11 @@ class FunServiceProvider extends ServiceProvider
         'https://www.youtube.com/watch?v=xA8-6X8aR3o',
         'https://www.youtube.com/watch?v=7R1nRxcICeE',
         'https://www.youtube.com/watch?v=sCNrK-n68CM',
+        'https://www.youtube.com/watch?v=SkgTxQm9DWM',
+        'https://www.youtube.com/watch?v=O2ulyJuvU3Q',
+        'https://www.youtube.com/watch?v=yYhj9QYW7bc',
+        'https://www.youtube.com/watch?v=croUKrggms8',
+        'https://www.youtube.com/watch?v=gfkts0u-m6w',
     ];
 
     public function boot()
