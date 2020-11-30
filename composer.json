@@ -17,7 +17,6 @@
         }
     ],
     "require": {
-        "php": "^7.4",
         "illuminate/http": "8.*",
         "illuminate/routing": "8.*",
         "illuminate/support": "8.*"
